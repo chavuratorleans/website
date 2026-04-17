@@ -16,7 +16,7 @@
   <!-- Navigation -->
   <nav class="navbar">
     <div class="container">
-      <a href="index.html" class="navbar-logo" style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: 700; color: var(--primary);">Chavurat Or'Leans</a>
+      <a href="index.html" class="navbar-logo">Chavurat Or'Leans</a>
       <button class="nav-toggle" aria-label="Toggle navigation">
         <span></span>
         <span></span>
@@ -42,27 +42,23 @@
     </div>
   </header>
 
-  <!-- Seasonal Flyer -->
-  <section class="seasonal fade-in">
-    <img src="images/seasonal-flyer.png" data-content-attr="seasonal_alt" alt="Save the Date — Spring 2026">
-  </section>
-
-  <!-- Schedule + Calendar side by side -->
-  <section class="schedule-calendar fade-in">
-    <div class="schedule-calendar-inner">
-      <div class="schedule-side">
-        <div class="schedule-inner">
-          <h2 data-content="schedule_heading"></h2>
-          <ul>
-            <li data-repeat="schedule_items" style="display:none">
-              <span data-field="item"></span>
-            </li>
-          </ul>
-          <p class="schedule-note" data-content="schedule_note"></p>
-          <a href="https://drive.google.com/drive/u/1/folders/15IbhDkBsScuVq5nX2a6BMN3Dsb9VVqYy" class="resource-link" target="_blank" rel="noopener">&#128214; Divrei Torah Archive</a>
-        </div>
+  <!-- Events Band: Flyer + Schedule + Calendar (3-column) -->
+  <section class="events-band fade-in">
+    <div class="events-band-inner">
+      <div class="events-flyer">
+        <img src="images/seasonal-flyer.png" data-content-attr="seasonal_alt" alt="Save the Date — Spring 2026">
       </div>
-      <div class="calendar-container">
+      <div class="events-schedule">
+        <h2 data-content="schedule_heading"></h2>
+        <ul>
+          <li data-repeat="schedule_items" style="display:none">
+            <span data-field="item"></span>
+          </li>
+        </ul>
+        <p class="schedule-note" data-content="schedule_note"></p>
+        <a href="https://drive.google.com/drive/u/1/folders/15IbhDkBsScuVq5nX2a6BMN3Dsb9VVqYy" class="resource-link" target="_blank" rel="noopener">&#128214; Divrei Torah Archive</a>
+      </div>
+      <div class="events-calendar">
         <iframe src="https://calendar.google.com/calendar/embed?src=chavuratorleans%40gmail.com&ctz=America%2FChicago&mode=AGENDA" width="100%" height="400" frameborder="0" scrolling="no"></iframe>
       </div>
     </div>

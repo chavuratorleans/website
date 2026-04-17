@@ -1017,19 +1017,113 @@ body.content-loaded [data-repeat] {
 
 
 /* --------------------------------------------------------------------------
-   24. Seasonal Flyer
+   24. Events Band — 3-Column: Flyer | Schedule | Calendar
    -------------------------------------------------------------------------- */
-.seasonal {
-  text-align: center;
-  padding: var(--space-2xl) var(--space-lg);
-  background-color: var(--white);
+.events-band {
+  background: linear-gradient(180deg, var(--white) 0%, #faf0d8 50%, var(--white) 100%);
+  padding: var(--space-3xl) var(--space-lg);
 }
 
-.seasonal img {
-  max-width: 500px;
+.events-band-inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-xl);
+  max-width: var(--max-width);
+  margin: 0 auto;
+  align-items: start;
+}
+
+/* Flyer column */
+.events-flyer img {
   width: 100%;
+  max-height: 420px;
+  object-fit: contain;
   border-radius: var(--radius-md);
   box-shadow: 0 4px 20px var(--shadow-md);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.events-flyer img:hover {
+  transform: scale(1.02) translateY(-3px);
+  box-shadow: 0 8px 30px rgba(107, 58, 107, 0.18);
+}
+
+/* Schedule column */
+.events-schedule {
+  border-left: 4px solid var(--accent);
+  padding-left: var(--space-xl);
+}
+
+.events-schedule h2 {
+  margin-bottom: var(--space-lg);
+}
+
+.events-schedule ul {
+  margin-bottom: var(--space-md);
+}
+
+.events-schedule li {
+  position: relative;
+  padding-left: var(--space-lg);
+  margin-bottom: var(--space-sm);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.events-schedule li::before {
+  content: '\2727';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-size: 1.1rem;
+}
+
+.events-schedule .schedule-note {
+  font-style: italic;
+  color: var(--primary-light);
+  margin-top: var(--space-md);
+}
+
+/* Calendar column */
+.events-calendar {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 2px 12px var(--shadow);
+}
+
+.events-calendar iframe {
+  width: 100%;
+  min-height: 400px;
+}
+
+/* Tablet: flyer full-width top, schedule + calendar side-by-side below */
+@media (min-width: 768px) {
+  .events-band-inner {
+    grid-template-columns: 1fr 1fr;
+  }
+  .events-flyer {
+    grid-column: 1 / -1;
+    text-align: center;
+  }
+  .events-flyer img {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+}
+
+/* Desktop: true 3-column */
+@media (min-width: 1024px) {
+  .events-band-inner {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: var(--space-2xl);
+  }
+  .events-flyer {
+    grid-column: auto;
+    text-align: left;
+  }
+  .events-flyer img {
+    max-width: 100%;
+  }
 }
 
 
@@ -1114,38 +1208,7 @@ body.content-loaded [data-repeat] {
 }
 
 
-/* --------------------------------------------------------------------------
-   26. Schedule + Calendar Side-by-Side
-   -------------------------------------------------------------------------- */
-.schedule-calendar {
-  padding: var(--space-3xl) var(--space-lg);
-  max-width: var(--max-width);
-  margin: 0 auto;
-}
-
-.schedule-calendar-inner {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-2xl);
-}
-
-@media (min-width: 768px) {
-  .schedule-calendar-inner {
-    grid-template-columns: 1fr 1fr;
-    align-items: start;
-  }
-}
-
-.schedule-calendar .calendar-container {
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  box-shadow: 0 2px 12px var(--shadow);
-}
-
-.schedule-calendar .calendar-container iframe {
-  width: 100%;
-  min-height: 400px;
-}
+/* (Section 26 merged into Events Band above) */
 
 
 /* --------------------------------------------------------------------------
