@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donate — Chavurat Or'Leans</title>
+  <meta name="description" content="Support Chavurat Or'Leans with a donation. Tax-deductible and non-tax-deductible options available.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="navbar-logo">
+        <img src="images/logo-banner.png" alt="Chavurat Or'Leans">
+      </a>
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="donate.html" class="active">Donations</a></li>
+        <li><a href="join.html">Join Our Contact List</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Donate Header -->
+  <section class="donate-header fade-in">
+    <h1 data-content="heading"></h1>
+    <p data-content="intro"></p>
+  </section>
+
+  <!-- Donation Cards -->
+  <div class="donation-cards">
+    <!-- Non-Tax Deductible Card -->
+    <div class="donation-card fade-in">
+      <h2 data-content="non_tax_heading"></h2>
+      <div class="donation-method" data-repeat="non_tax_methods" style="display:none">
+        <h3 data-field="method"></h3>
+        <p data-field="detail"></p>
+      </div>
+    </div>
+
+    <!-- Tax Deductible Card -->
+    <div class="donation-card fade-in">
+      <h2 data-content="tax_heading"></h2>
+      <p data-content="tax_intro"></p>
+      <p><a href="https://donate.mazloweb.com/donate/UkVbPpwdkzRd6qbpNnWKST" class="btn-primary" target="_blank" rel="noopener">Donate Online</a></p>
+      <p data-content="daf_text" style="margin-top: 1.5rem;"></p>
+    </div>
+  </div>
+
+  <!-- Mazlo Donation Form Embed -->
+  <div class="iframe-container fade-in" style="padding-bottom: 3rem;">
+    <iframe src="https://donate.mazloweb.com/donate/UkVbPpwdkzRd6qbpNnWKST"
+            width="100%" height="600" frameborder="0" title="Donation Form"></iframe>
+  </div>
+
+  <!-- Fiscal Sponsor Note -->
+  <p class="fiscal-note fade-in" data-content="fiscal_note"></p>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p class="footer-email">
+      <a href="mailto:chavuratorleans@gmail.com" data-content="email"></a>
+    </p>
+    <p class="footer-copyright" data-content="footer_text"></p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4/dist/js-yaml.min.js"></script>
+  <script src="js/content-loader.js"></script>
+  <script>initContent('content/site.yml', 'content/donate.yml');</script>
+  <script>
+    // Hamburger toggle
+    document.querySelector('.nav-toggle').addEventListener('click', function() {
+      this.classList.toggle('open');
+      document.querySelector('.nav-links').classList.toggle('open');
+    });
+    // Intersection observer for fade-in animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
