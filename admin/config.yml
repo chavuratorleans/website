@@ -1,6 +1,5 @@
 backend:
-  name: github
-  repo: chavuratorleans/website
+  name: git-gateway
   branch: main
 
 media_folder: "images"
