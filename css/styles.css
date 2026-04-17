@@ -353,7 +353,7 @@ body.content-loaded [data-repeat] {
    -------------------------------------------------------------------------- */
 .hero {
   text-align: center;
-  padding: var(--space-3xl) var(--space-lg) var(--space-2xl);
+  padding: var(--space-xl) var(--space-lg) var(--space-2xl);
   background: linear-gradient(
     180deg,
     var(--bg) 0%,
@@ -367,13 +367,7 @@ body.content-loaded [data-repeat] {
   margin: 0 auto var(--space-xl);
 }
 
-.hero-tagline {
-  font-family: var(--font-heading);
-  font-size: 1.5rem;
-  color: var(--primary);
-  font-style: italic;
-  font-weight: 400;
-}
+/* hero-tagline moved to standalone tagline-banner (section 23a) */
 
 
 /* --------------------------------------------------------------------------
@@ -966,7 +960,63 @@ body.content-loaded [data-repeat] {
 
 
 /* --------------------------------------------------------------------------
-   23. Hero Side-by-Side Layout
+   23a. Tagline Banner — "We were expecting you!"
+   -------------------------------------------------------------------------- */
+.tagline-banner {
+  text-align: center;
+  padding: var(--space-3xl) var(--space-lg) var(--space-xl);
+  opacity: 0;
+  transform: translateY(12px);
+  animation: tagline-entrance 1s ease 0.3s forwards;
+}
+
+@keyframes tagline-entrance {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tagline-text {
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--primary);
+  letter-spacing: 0.01em;
+  margin-bottom: var(--space-md);
+}
+
+.tagline-accent {
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--warm));
+  margin: 0 auto;
+  border-radius: 2px;
+}
+
+@media (min-width: 480px) {
+  .tagline-text {
+    font-size: 2.6rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .tagline-text {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .tagline-text {
+    font-size: 3.4rem;
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   23b. Hero Side-by-Side Layout
    -------------------------------------------------------------------------- */
 .hero-inner {
   display: flex;
