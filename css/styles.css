@@ -265,6 +265,10 @@ body.content-loaded [data-repeat] {
   gap: var(--space-lg);
 }
 
+.nav-links li {
+  list-style: none;
+}
+
 .nav-links a {
   font-family: var(--font-body);
   font-size: 1rem;
@@ -936,6 +940,10 @@ body.content-loaded [data-repeat] {
     display: flex;
   }
 
+  .nav-links li {
+    width: 100%;
+  }
+
   .nav-links a {
     display: block;
     padding: var(--space-md) var(--space-lg);
@@ -943,7 +951,7 @@ body.content-loaded [data-repeat] {
     border-bottom: 1px solid var(--light);
   }
 
-  .nav-links a:last-child {
+  .nav-links li:last-child a {
     border-bottom: none;
   }
 
