@@ -43,6 +43,12 @@ collections:
             widget: "list"
             field: { name: "item", label: "Item", widget: "string" }
           - { name: "schedule_note", label: "Schedule Note", widget: "text" }
+          - name: "faqs"
+            label: "FAQs"
+            widget: "list"
+            fields:
+              - { name: "question", label: "Question", widget: "string" }
+              - { name: "answer", label: "Answer (HTML links supported)", widget: "text" }
 
       - name: "donate"
         label: "Donate Page"
