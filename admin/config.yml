@@ -1,0 +1,73 @@
+backend:
+  name: github
+  repo: chavuratorleans/website
+  branch: main
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  - name: "settings"
+    label: "Site Settings"
+    files:
+      - name: "site"
+        label: "Site Info"
+        file: "content/site.yml"
+        fields:
+          - { name: "name", label: "Site Name", widget: "string" }
+          - { name: "email", label: "Email", widget: "string" }
+          - { name: "contact_name", label: "Contact Name", widget: "string" }
+          - { name: "contact_email", label: "Contact Email", widget: "string" }
+          - { name: "footer_text", label: "Footer Text", widget: "string" }
+          - { name: "calendar_email", label: "Calendar Email", widget: "string" }
+
+  - name: "pages"
+    label: "Pages"
+    files:
+      - name: "home"
+        label: "Homepage"
+        file: "content/home.yml"
+        fields:
+          - { name: "tagline", label: "Tagline", widget: "string" }
+          - { name: "welcome_heading", label: "Welcome Heading", widget: "string" }
+          - { name: "welcome_text", label: "Welcome Text", widget: "text" }
+          - name: "values"
+            label: "Our Values"
+            widget: "list"
+            fields:
+              - { name: "title", label: "Title", widget: "string" }
+              - { name: "text", label: "Description", widget: "text" }
+          - { name: "more_text", label: "\"The More, The More\" Text", widget: "text" }
+          - { name: "schedule_heading", label: "Schedule Heading", widget: "string" }
+          - name: "schedule_items"
+            label: "Schedule Items"
+            widget: "list"
+            field: { name: "item", label: "Item", widget: "string" }
+          - { name: "schedule_note", label: "Schedule Note", widget: "text" }
+
+      - name: "donate"
+        label: "Donate Page"
+        file: "content/donate.yml"
+        fields:
+          - { name: "heading", label: "Page Heading", widget: "string" }
+          - { name: "intro", label: "Intro Text", widget: "text" }
+          - { name: "non_tax_heading", label: "Non-Tax Section Heading", widget: "string" }
+          - name: "non_tax_methods"
+            label: "Non-Tax Donation Methods"
+            widget: "list"
+            fields:
+              - { name: "method", label: "Method Name", widget: "string" }
+              - { name: "detail", label: "Details", widget: "string" }
+          - { name: "tax_heading", label: "Tax-Deductible Section Heading", widget: "string" }
+          - { name: "tax_intro", label: "Tax-Deductible Intro", widget: "text" }
+          - { name: "tax_link", label: "Donation Form URL", widget: "string" }
+          - { name: "daf_text", label: "Donor-Advised Fund Text", widget: "text" }
+          - { name: "fiscal_note", label: "Fiscal Sponsor Note", widget: "text" }
+
+      - name: "join"
+        label: "Join Page"
+        file: "content/join.yml"
+        fields:
+          - { name: "heading", label: "Page Heading", widget: "string" }
+          - { name: "intro", label: "Intro Text", widget: "text" }
+          - { name: "form_id", label: "Google Form ID", widget: "string" }
