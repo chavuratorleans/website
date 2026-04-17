@@ -966,7 +966,214 @@ body.content-loaded [data-repeat] {
 
 
 /* --------------------------------------------------------------------------
-   23. Print Styles
+   23. Hero Side-by-Side Layout
+   -------------------------------------------------------------------------- */
+.hero-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2xl);
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.hero-text {
+  text-align: left;
+}
+
+.hero-text h1 {
+  font-family: var(--font-heading);
+  color: var(--primary);
+  font-size: 2rem;
+  margin-bottom: var(--space-md);
+}
+
+.hero-text p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+@media (max-width: 767px) {
+  .hero-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+  .hero-text {
+    text-align: center;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-text h1 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-text h1 {
+    font-size: 2.75rem;
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   24. Seasonal Flyer
+   -------------------------------------------------------------------------- */
+.seasonal {
+  text-align: center;
+  padding: var(--space-2xl) var(--space-lg);
+  background-color: var(--white);
+}
+
+.seasonal img {
+  max-width: 500px;
+  width: 100%;
+  border-radius: var(--radius-md);
+  box-shadow: 0 4px 20px var(--shadow-md);
+}
+
+
+/* --------------------------------------------------------------------------
+   25. FAQ Accordion
+   -------------------------------------------------------------------------- */
+.faq {
+  padding: var(--space-3xl) var(--space-lg);
+}
+
+.faq h2 {
+  text-align: center;
+  margin-bottom: var(--space-2xl);
+}
+
+.faq-list {
+  max-width: var(--content-narrow);
+  margin: 0 auto;
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--light);
+}
+
+.faq-question {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-lg) 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  color: var(--primary);
+  font-weight: 600;
+  text-align: left;
+  gap: var(--space-md);
+  transition: color var(--transition);
+}
+
+.faq-question:hover {
+  color: var(--warm);
+}
+
+.faq-question::after {
+  content: '+';
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--accent);
+  transition: transform var(--transition);
+  flex-shrink: 0;
+}
+
+.faq-item.open .faq-question::after {
+  content: '\2212';
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+  padding: 0 0;
+}
+
+.faq-item.open .faq-answer {
+  max-height: 500px;
+  padding-bottom: var(--space-lg);
+}
+
+.faq-answer p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text);
+}
+
+.faq-answer a {
+  color: var(--primary);
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+}
+
+
+/* --------------------------------------------------------------------------
+   26. Schedule + Calendar Side-by-Side
+   -------------------------------------------------------------------------- */
+.schedule-calendar {
+  padding: var(--space-3xl) var(--space-lg);
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.schedule-calendar-inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-2xl);
+}
+
+@media (min-width: 768px) {
+  .schedule-calendar-inner {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+
+.schedule-calendar .calendar-container {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 2px 12px var(--shadow);
+}
+
+.schedule-calendar .calendar-container iframe {
+  width: 100%;
+  min-height: 400px;
+}
+
+
+/* --------------------------------------------------------------------------
+   27. Resource Link
+   -------------------------------------------------------------------------- */
+.resource-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-weight: 600;
+  color: var(--primary);
+  text-decoration: none;
+  padding: var(--space-sm) var(--space-md);
+  border: 2px solid var(--light);
+  border-radius: var(--radius-md);
+  transition: all var(--transition);
+  margin-top: var(--space-md);
+}
+
+.resource-link:hover {
+  border-color: var(--accent);
+  background-color: var(--light);
+  color: var(--warm);
+}
+
+
+/* --------------------------------------------------------------------------
+   28. Print Styles
    -------------------------------------------------------------------------- */
 @media print {
   .navbar,
