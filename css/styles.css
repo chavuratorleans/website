@@ -1,0 +1,991 @@
+/* ==========================================================================
+   Chavurat Or'Leans — Shared Stylesheet
+   A warm, inviting design for a New Orleans Jewish community Shabbat group.
+   Colors derived from the Chavurat Or'Leans logo.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. CSS Custom Properties
+   -------------------------------------------------------------------------- */
+:root {
+  /* Colors — from logo */
+  --bg: #FBF3E4;
+  --primary: #6B3A6B;
+  --primary-light: #8B5A8B;
+  --accent: #E8A629;
+  --warm: #E87D4A;
+  --text: #4A3A4A;
+  --light: #F5E6C8;
+  --white: #FFFFFF;
+
+  /* Derived colors */
+  --accent-hover: #D4951F;
+  --warm-hover: #D06A3A;
+  --primary-dark: #5A2E5A;
+  --shadow: rgba(107, 58, 107, 0.08);
+  --shadow-md: rgba(107, 58, 107, 0.12);
+  --overlay: rgba(75, 58, 75, 0.5);
+
+  /* Typography */
+  --font-heading: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-body: 'Source Sans 3', 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* Spacing scale */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  --space-4xl: 6rem;
+
+  /* Layout */
+  --max-width: 1100px;
+  --content-narrow: 800px;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-pill: 50px;
+
+  /* Transitions */
+  --transition: 0.3s ease;
+  --transition-fast: 0.15s ease;
+}
+
+
+/* --------------------------------------------------------------------------
+   2. Reset / Base
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text);
+  background-color: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+iframe {
+  border: 0;
+}
+
+
+/* --------------------------------------------------------------------------
+   3. Typography
+   -------------------------------------------------------------------------- */
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  color: var(--primary);
+  line-height: 1.3;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: var(--space-lg);
+}
+
+h2 {
+  font-size: 1.65rem;
+  margin-bottom: var(--space-md);
+}
+
+h3 {
+  font-size: 1.35rem;
+  margin-bottom: var(--space-sm);
+}
+
+h4 {
+  font-size: 1.15rem;
+  margin-bottom: var(--space-sm);
+  font-weight: 600;
+}
+
+p {
+  margin-bottom: var(--space-md);
+  color: var(--text);
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+a:not(.btn-primary):not(.btn-secondary) {
+  color: var(--primary);
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-underline-offset: 3px;
+  transition: color var(--transition), text-decoration-color var(--transition);
+}
+
+a:not(.btn-primary):not(.btn-secondary):hover {
+  color: var(--warm);
+  text-decoration-color: var(--warm);
+}
+
+strong {
+  font-weight: 600;
+}
+
+em {
+  font-style: italic;
+}
+
+
+/* --------------------------------------------------------------------------
+   4. Utility Classes
+   -------------------------------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-lg);
+  padding-right: var(--space-lg);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.section {
+  padding-top: var(--space-3xl);
+  padding-bottom: var(--space-3xl);
+}
+
+
+/* --------------------------------------------------------------------------
+   5. Content Loading State
+   -------------------------------------------------------------------------- */
+
+/* Before content is loaded, hide data-driven elements */
+body:not(.content-loaded) [data-content],
+body:not(.content-loaded) [data-repeat] {
+  opacity: 0;
+}
+
+/* Skeleton shimmer for loading state */
+body:not(.content-loaded) .skeleton-line {
+  display: inline-block;
+  width: 70%;
+  height: 1em;
+  background: linear-gradient(
+    90deg,
+    var(--light) 25%,
+    #f0ddb5 50%,
+    var(--light) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s ease-in-out infinite;
+  border-radius: var(--radius-sm);
+}
+
+@keyframes skeleton-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Fade content in once loaded */
+body.content-loaded [data-content],
+body.content-loaded [data-repeat] {
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+
+/* --------------------------------------------------------------------------
+   6. Navigation
+   -------------------------------------------------------------------------- */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: var(--bg);
+  border-bottom: 2px solid var(--light);
+  padding: var(--space-sm) 0;
+}
+
+.navbar .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo img {
+  max-height: 50px;
+  width: auto;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.nav-links a {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary);
+  text-decoration: none;
+  padding: var(--space-xs) var(--space-sm);
+  position: relative;
+  transition: color var(--transition);
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 3px;
+  background-color: var(--accent);
+  border-radius: 2px;
+  transition: width var(--transition);
+}
+
+.nav-links a:hover {
+  color: var(--warm);
+}
+
+.nav-links a:hover::after {
+  width: 80%;
+}
+
+.nav-links a.active {
+  color: var(--primary);
+}
+
+.nav-links a.active::after {
+  width: 80%;
+  background-color: var(--accent);
+}
+
+/* Hamburger menu toggle */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  gap: 5px;
+  background: none;
+  border: none;
+  padding: var(--space-xs);
+}
+
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 3px;
+  background-color: var(--primary);
+  border-radius: 2px;
+  transition: transform var(--transition), opacity var(--transition);
+}
+
+/* Hamburger to X animation */
+.nav-toggle.open span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.nav-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle.open span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+
+/* --------------------------------------------------------------------------
+   7. Hero Section
+   -------------------------------------------------------------------------- */
+.hero {
+  text-align: center;
+  padding: var(--space-3xl) var(--space-lg) var(--space-2xl);
+  background: linear-gradient(
+    180deg,
+    var(--bg) 0%,
+    #faf0d8 50%,
+    var(--bg) 100%
+  );
+}
+
+.hero-logo {
+  max-width: 280px;
+  margin: 0 auto var(--space-xl);
+}
+
+.hero-tagline {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  color: var(--primary);
+  font-style: italic;
+  font-weight: 400;
+}
+
+
+/* --------------------------------------------------------------------------
+   8. Welcome Section
+   -------------------------------------------------------------------------- */
+.welcome {
+  max-width: var(--content-narrow);
+  margin-left: auto;
+  margin-right: auto;
+  padding: var(--space-3xl) var(--space-lg);
+  text-align: center;
+}
+
+.welcome h2 {
+  margin-bottom: var(--space-lg);
+}
+
+.welcome p {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: var(--text);
+}
+
+
+/* --------------------------------------------------------------------------
+   9. Values Grid
+   -------------------------------------------------------------------------- */
+.values {
+  padding: var(--space-3xl) var(--space-lg);
+}
+
+.values h2 {
+  text-align: center;
+  margin-bottom: var(--space-2xl);
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-xl);
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.value-card {
+  background-color: var(--light);
+  border-radius: var(--radius-md);
+  padding: var(--space-xl) var(--space-lg);
+  box-shadow: 0 2px 12px var(--shadow);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.value-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px var(--shadow-md);
+}
+
+.value-card h3 {
+  color: var(--primary);
+  margin-bottom: var(--space-sm);
+  font-size: 1.25rem;
+}
+
+.value-card p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+
+/* --------------------------------------------------------------------------
+   10. "More" Section
+   -------------------------------------------------------------------------- */
+.more {
+  background-color: var(--white);
+  padding: var(--space-3xl) var(--space-lg);
+  text-align: center;
+}
+
+.more .container {
+  max-width: var(--content-narrow);
+}
+
+.more p {
+  font-size: 1.1rem;
+  font-style: italic;
+  line-height: 1.85;
+  color: var(--text);
+}
+
+
+/* --------------------------------------------------------------------------
+   11. Schedule Section
+   -------------------------------------------------------------------------- */
+.schedule {
+  padding: var(--space-3xl) var(--space-lg);
+  max-width: var(--content-narrow);
+  margin: 0 auto;
+}
+
+.schedule-inner {
+  border-left: 4px solid var(--warm);
+  padding-left: var(--space-xl);
+}
+
+.schedule h2 {
+  margin-bottom: var(--space-lg);
+}
+
+.schedule ul {
+  margin-bottom: var(--space-md);
+}
+
+.schedule li {
+  position: relative;
+  padding-left: var(--space-lg);
+  margin-bottom: var(--space-sm);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.schedule li::before {
+  content: '\2727';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-size: 1.1rem;
+}
+
+.schedule .schedule-note {
+  font-style: italic;
+  color: var(--primary-light);
+  margin-top: var(--space-md);
+}
+
+
+/* --------------------------------------------------------------------------
+   12. Calendar Embed
+   -------------------------------------------------------------------------- */
+.calendar-section {
+  padding: var(--space-2xl) var(--space-lg) var(--space-3xl);
+}
+
+.calendar-section h2 {
+  text-align: center;
+  margin-bottom: var(--space-xl);
+}
+
+.calendar-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 2px 12px var(--shadow);
+}
+
+.calendar-container iframe {
+  width: 100%;
+  min-height: 400px;
+}
+
+
+/* --------------------------------------------------------------------------
+   13. CTA Section
+   -------------------------------------------------------------------------- */
+.cta {
+  text-align: center;
+  padding: var(--space-3xl) var(--space-lg);
+  background: linear-gradient(
+    180deg,
+    var(--bg) 0%,
+    #faf0d8 100%
+  );
+}
+
+.cta h2 {
+  margin-bottom: var(--space-xl);
+}
+
+.cta-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+
+/* --------------------------------------------------------------------------
+   14. Buttons
+   -------------------------------------------------------------------------- */
+.btn-primary,
+.btn-secondary {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.85rem 2rem;
+  border-radius: var(--radius-pill);
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color var(--transition),
+              color var(--transition),
+              border-color var(--transition),
+              transform var(--transition),
+              box-shadow var(--transition);
+}
+
+.btn-primary {
+  background-color: var(--accent);
+  color: var(--white);
+  border: 2px solid var(--accent);
+  box-shadow: 0 2px 8px rgba(232, 166, 41, 0.25);
+}
+
+.btn-primary:hover {
+  background-color: var(--warm);
+  border-color: var(--warm);
+  color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(232, 125, 74, 0.3);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 4px rgba(232, 125, 74, 0.2);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+}
+
+.btn-secondary:hover {
+  background-color: var(--warm);
+  border-color: var(--warm);
+  color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(232, 125, 74, 0.2);
+}
+
+.btn-secondary:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 4px rgba(232, 125, 74, 0.15);
+}
+
+
+/* --------------------------------------------------------------------------
+   15. Donate Page
+   -------------------------------------------------------------------------- */
+.donate-header {
+  text-align: center;
+  padding: var(--space-3xl) var(--space-lg) var(--space-xl);
+}
+
+.donate-header h1 {
+  margin-bottom: var(--space-md);
+}
+
+.donate-header p {
+  font-size: 1.1rem;
+  max-width: var(--content-narrow);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.donation-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-xl);
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-lg) var(--space-3xl);
+}
+
+.donation-card {
+  background-color: var(--light);
+  border-radius: var(--radius-md);
+  padding: var(--space-xl) var(--space-lg);
+  box-shadow: 0 2px 12px var(--shadow);
+}
+
+.donation-card h2 {
+  margin-bottom: var(--space-lg);
+  font-size: 1.45rem;
+  position: relative;
+  padding-bottom: var(--space-sm);
+}
+
+.donation-card h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background-color: var(--accent);
+  border-radius: 2px;
+}
+
+.donation-method {
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid rgba(107, 58, 107, 0.1);
+}
+
+.donation-method:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.donation-method h3 {
+  color: var(--primary);
+  font-size: 1.15rem;
+  margin-bottom: var(--space-xs);
+}
+
+.donation-method p {
+  font-size: 0.95rem;
+}
+
+.fiscal-note {
+  text-align: center;
+  max-width: var(--content-narrow);
+  margin: 0 auto;
+  padding: 0 var(--space-lg) var(--space-3xl);
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--primary-light);
+}
+
+
+/* --------------------------------------------------------------------------
+   16. Form / Iframe Embed
+   -------------------------------------------------------------------------- */
+.iframe-container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+.iframe-container iframe {
+  width: 100%;
+  min-height: 500px;
+  max-height: 900px;
+  border: 0;
+  border-radius: var(--radius-md);
+  background-color: var(--white);
+}
+
+/* Join page specific */
+.join-header {
+  text-align: center;
+  padding: var(--space-3xl) var(--space-lg) var(--space-xl);
+}
+
+.join-header h1 {
+  margin-bottom: var(--space-md);
+}
+
+.join-header p {
+  font-size: 1.1rem;
+  max-width: var(--content-narrow);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+/* --------------------------------------------------------------------------
+   17. Footer
+   -------------------------------------------------------------------------- */
+.footer {
+  background-color: var(--primary);
+  color: var(--bg);
+  text-align: center;
+  padding: var(--space-2xl) var(--space-lg);
+}
+
+.footer p {
+  color: var(--bg);
+  font-size: 0.95rem;
+  margin-bottom: var(--space-sm);
+}
+
+.footer p:last-child {
+  margin-bottom: 0;
+}
+
+.footer a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-color: rgba(232, 166, 41, 0.5);
+  text-underline-offset: 3px;
+  transition: color var(--transition), text-decoration-color var(--transition);
+}
+
+.footer a:hover {
+  color: var(--warm);
+  text-decoration-color: var(--warm);
+}
+
+.footer-email {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.footer-copyright {
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+
+/* --------------------------------------------------------------------------
+   18. Animations
+   -------------------------------------------------------------------------- */
+.fade-in {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered fade-in for grid children */
+.fade-in-stagger > * {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.fade-in-stagger.visible > *:nth-child(1) { transition-delay: 0s; }
+.fade-in-stagger.visible > *:nth-child(2) { transition-delay: 0.1s; }
+.fade-in-stagger.visible > *:nth-child(3) { transition-delay: 0.2s; }
+.fade-in-stagger.visible > *:nth-child(4) { transition-delay: 0.3s; }
+
+.fade-in-stagger.visible > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* --------------------------------------------------------------------------
+   19. Responsive — 480px (Large phones)
+   -------------------------------------------------------------------------- */
+@media (min-width: 480px) {
+  h1 {
+    font-size: 2.25rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  .hero-logo {
+    max-width: 340px;
+  }
+
+  .hero-tagline {
+    font-size: 1.65rem;
+  }
+
+  .cta-buttons {
+    flex-direction: row;
+    justify-content: center;
+    gap: var(--space-lg);
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   20. Responsive — 768px (Tablet)
+   -------------------------------------------------------------------------- */
+@media (min-width: 768px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  .hero {
+    padding: var(--space-4xl) var(--space-lg) var(--space-3xl);
+  }
+
+  .hero-logo {
+    max-width: 400px;
+  }
+
+  .hero-tagline {
+    font-size: 1.85rem;
+  }
+
+  .welcome p {
+    font-size: 1.2rem;
+  }
+
+  .values-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-xl);
+  }
+
+  .donation-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .calendar-container iframe {
+    min-height: 500px;
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   21. Responsive — 1024px (Desktop)
+   -------------------------------------------------------------------------- */
+@media (min-width: 1024px) {
+  .container {
+    padding-left: var(--space-xl);
+    padding-right: var(--space-xl);
+  }
+
+  h1 {
+    font-size: 2.75rem;
+  }
+
+  .value-card {
+    padding: var(--space-2xl) var(--space-xl);
+  }
+
+  .donation-card {
+    padding: var(--space-2xl) var(--space-xl);
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   22. Responsive — Mobile nav (below 768px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 767px) {
+  .nav-toggle {
+    display: flex;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    background-color: var(--bg);
+    border-bottom: 2px solid var(--light);
+    padding: var(--space-md) 0;
+    box-shadow: 0 4px 12px var(--shadow);
+    gap: 0;
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-links a {
+    display: block;
+    padding: var(--space-md) var(--space-lg);
+    text-align: center;
+    border-bottom: 1px solid var(--light);
+  }
+
+  .nav-links a:last-child {
+    border-bottom: none;
+  }
+
+  .nav-links a::after {
+    bottom: 0;
+  }
+
+  .nav-links a.active::after {
+    width: 40px;
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   23. Print Styles
+   -------------------------------------------------------------------------- */
+@media print {
+  .navbar,
+  .nav-toggle,
+  .cta,
+  .calendar-section,
+  .iframe-container {
+    display: none;
+  }
+
+  body {
+    background: white;
+    color: black;
+  }
+
+  h1, h2, h3, h4 {
+    color: black;
+  }
+
+  .footer {
+    background: none;
+    color: black;
+    border-top: 1px solid #ccc;
+  }
+
+  .footer p,
+  .footer a {
+    color: black;
+  }
+}
