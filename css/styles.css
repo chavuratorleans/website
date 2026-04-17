@@ -431,6 +431,13 @@ body.content-loaded [data-repeat] {
   font-size: 1.25rem;
 }
 
+.value-icon {
+  display: block;
+  font-size: 2rem;
+  margin-bottom: var(--space-sm);
+  line-height: 1;
+}
+
 .value-card p {
   font-size: 0.95rem;
   line-height: 1.7;
@@ -438,23 +445,32 @@ body.content-loaded [data-repeat] {
 
 
 /* --------------------------------------------------------------------------
-   10. "More" Section
+   10. "More" Section — Pull-Quote Accent Band
    -------------------------------------------------------------------------- */
 .more {
-  background-color: var(--white);
-  padding: var(--space-3xl) var(--space-lg);
+  background-color: var(--primary);
+  padding: var(--space-2xl) var(--space-lg);
   text-align: center;
+  position: relative;
 }
 
 .more .container {
   max-width: var(--content-narrow);
 }
 
+.more h2 {
+  font-size: 2rem;
+  color: var(--accent);
+  margin-bottom: var(--space-md);
+}
+
 .more p {
-  font-size: 1.1rem;
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
   font-style: italic;
   line-height: 1.85;
-  color: var(--text);
+  color: var(--bg);
+  opacity: 0.9;
 }
 
 
