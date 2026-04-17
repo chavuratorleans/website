@@ -1084,45 +1084,12 @@ body.content-loaded [data-repeat] {
   margin-top: var(--space-md);
 }
 
-/* Calendar column */
-.events-calendar {
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  box-shadow: 0 2px 12px var(--shadow);
-}
-
-.events-calendar iframe {
-  width: 100%;
-  min-height: 400px;
-}
-
-/* Tablet: flyer full-width top, schedule + calendar side-by-side below */
+/* Tablet+: side-by-side */
 @media (min-width: 768px) {
   .events-band-inner {
     grid-template-columns: 1fr 1fr;
-  }
-  .events-flyer {
-    grid-column: 1 / -1;
-    text-align: center;
-  }
-  .events-flyer img {
-    max-width: 400px;
-    margin: 0 auto;
-  }
-}
-
-/* Desktop: true 3-column */
-@media (min-width: 1024px) {
-  .events-band-inner {
-    grid-template-columns: 1fr 1fr 1fr;
     gap: var(--space-2xl);
-  }
-  .events-flyer {
-    grid-column: auto;
-    text-align: left;
-  }
-  .events-flyer img {
-    max-width: 100%;
+    align-items: center;
   }
 }
 
