@@ -1194,8 +1194,20 @@ body.content-loaded [data-repeat] {
 }
 
 .faq-list {
-  max-width: var(--content-narrow);
+  max-width: var(--max-width);
   margin: 0 auto;
+  column-count: 1;
+  column-gap: var(--space-2xl);
+}
+
+@media (min-width: 768px) {
+  .faq-list {
+    column-count: 2;
+  }
+}
+
+.faq-item {
+  break-inside: avoid;
 }
 
 .faq-item {

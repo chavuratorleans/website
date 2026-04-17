@@ -95,6 +95,15 @@
     </div>
   </section>
 
+  <!-- CTA -->
+  <section class="cta fade-in">
+    <h2>Come Celebrate Shabbat With Us</h2>
+    <div class="cta-buttons">
+      <a href="join.html" class="btn-primary">Join Our Contact List</a>
+      <a href="donate.html" class="btn-secondary">Support Our Community</a>
+    </div>
+  </section>
+
   <!-- FAQ -->
   <section class="faq fade-in">
     <h2>Frequently Asked Questions</h2>
@@ -105,15 +114,6 @@
           <p data-field="answer"></p>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="cta fade-in">
-    <h2>Come Celebrate Shabbat With Us</h2>
-    <div class="cta-buttons">
-      <a href="join.html" class="btn-primary">Join Our Contact List</a>
-      <a href="donate.html" class="btn-secondary">Support Our Community</a>
     </div>
   </section>
 
@@ -147,11 +147,16 @@
       this.classList.toggle('open');
       document.querySelector('.nav-links').classList.toggle('open');
     });
-    // FAQ accordion
+    // FAQ accordion — opening one closes the others
     document.addEventListener('click', function(e) {
       var btn = e.target.closest('.faq-question');
       if (btn) {
-        btn.parentElement.classList.toggle('open');
+        var item = btn.parentElement;
+        var wasOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(function(el) {
+          el.classList.remove('open');
+        });
+        if (!wasOpen) item.classList.add('open');
       }
     });
     // Intersection observer for fade-in animations
