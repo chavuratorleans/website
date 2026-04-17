@@ -353,7 +353,7 @@ body.content-loaded [data-repeat] {
    -------------------------------------------------------------------------- */
 .hero {
   text-align: center;
-  padding: var(--space-xl) var(--space-lg) var(--space-2xl);
+  padding: var(--space-md) var(--space-lg) var(--space-lg);
   background: linear-gradient(
     180deg,
     var(--bg) 0%,
@@ -363,8 +363,8 @@ body.content-loaded [data-repeat] {
 }
 
 .hero-logo {
-  max-width: 280px;
-  margin: 0 auto var(--space-xl);
+  max-width: 240px;
+  margin: 0 auto var(--space-lg);
 }
 
 /* hero-tagline moved to standalone tagline-banner (section 23a) */
@@ -855,11 +855,11 @@ body.content-loaded [data-repeat] {
   }
 
   .hero {
-    padding: var(--space-4xl) var(--space-lg) var(--space-3xl);
+    padding: var(--space-lg) var(--space-lg) var(--space-xl);
   }
 
   .hero-logo {
-    max-width: 400px;
+    max-width: 300px;
   }
 
   .hero-tagline {
@@ -964,7 +964,7 @@ body.content-loaded [data-repeat] {
    -------------------------------------------------------------------------- */
 .tagline-banner {
   text-align: center;
-  padding: var(--space-3xl) var(--space-lg) var(--space-xl);
+  padding: var(--space-xl) var(--space-lg) var(--space-md);
   opacity: 0;
   transform: translateY(12px);
   animation: tagline-entrance 1s ease 0.3s forwards;
@@ -1071,7 +1071,7 @@ body.content-loaded [data-repeat] {
    -------------------------------------------------------------------------- */
 .events-band {
   background: linear-gradient(180deg, var(--white) 0%, #faf0d8 50%, var(--white) 100%);
-  padding: var(--space-3xl) var(--space-lg);
+  padding: var(--space-xl) var(--space-lg) var(--space-2xl);
 }
 
 .events-band-inner {
