@@ -45,11 +45,19 @@ function populatePage(data) {
     }
   });
 
-  // Src binding for iframes
+  // Src binding for iframes and images
   document.querySelectorAll('[data-src]').forEach(el => {
     const value = getNestedValue(data, el.dataset.src);
     if (value != null) {
       el.src = value;
+    }
+  });
+
+  // Alt text binding for images
+  document.querySelectorAll('[data-alt]').forEach(el => {
+    const value = getNestedValue(data, el.dataset.alt);
+    if (value != null) {
+      el.alt = value;
     }
   });
 

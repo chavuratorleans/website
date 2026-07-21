@@ -52,7 +52,8 @@ Content is stored in YAML files under `content/` and loaded client-side:
 - `data-repeat="array_key"` — clone template for each array item
 - `data-field="field_name"` — populate field within a repeated item
 - `data-href="key"` — bind href attribute
-- `data-src="key"` — bind iframe src
+- `data-src="key"` — bind src attribute (iframes and images)
+- `data-alt="key"` — bind img alt text
 - HTML is supported in YAML values (used for FAQ answer hyperlinks)
 
 Pages call `initContent('content/site.yml', 'content/<page>.yml')` to merge site-wide and page-specific content.
@@ -80,7 +81,8 @@ Pages call `initContent('content/site.yml', 'content/<page>.yml')` to merge site
 
 ## Open Items
 - DNS switch from Google Sites to Netlify (when ready to go live on domain)
-- CMS config needs updating to include newer fields (seasonal_image, faqs list, etc.)
+- Join/donate iframe URLs are hardcoded in HTML (form_id/tax_link YAML fields exist but iframes don't use them) — fine unless those URLs change often
+- `divrei_torah_link` exists in home.yml but is not rendered anywhere yet
 - Hebrew word accents on value cards considered but deferred
 - Photo integration deferred pending Shabbat observance discussion + permissions
 - Individual contact emails (Mia, Ben, Ellie) — currently all route to chavuratorleans@gmail.com

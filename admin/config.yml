@@ -30,12 +30,16 @@ collections:
           - { name: "tagline", label: "Tagline", widget: "string" }
           - { name: "welcome_heading", label: "Welcome Heading", widget: "string" }
           - { name: "welcome_text", label: "Welcome Text", widget: "text" }
+          - { name: "seasonal_image", label: "Seasonal Flyer (Save the Date graphic)", widget: "image", hint: "Upload the new flyer here each season — it replaces the graphic on the homepage." }
+          - { name: "seasonal_alt", label: "Seasonal Flyer Description", widget: "string", hint: "Short description of the flyer for screen readers, e.g. \"Spring 2026 Save the Date\"" }
           - name: "values"
             label: "Our Values"
             widget: "list"
             fields:
+              - { name: "hebrew", label: "Hebrew Word", widget: "string", required: false }
               - { name: "title", label: "Title", widget: "string" }
               - { name: "text", label: "Description", widget: "text" }
+          - { name: "more_headline", label: "\"The More, The More\" Headline", widget: "string" }
           - { name: "more_text", label: "\"The More, The More\" Text", widget: "text" }
           - { name: "schedule_heading", label: "Schedule Heading", widget: "string" }
           - name: "schedule_items"
